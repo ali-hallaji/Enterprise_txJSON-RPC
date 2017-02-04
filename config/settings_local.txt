@@ -1,0 +1,52 @@
+# Core Settings ########################################################
+CORE_NAME = 'CACHE SERVER'
+CORE_ID = 'cache'
+CORE_PORT = 7095
+########################################################################
+
+# Main settings ########################################################
+AIRPORTS = [
+    ('THR', 'localhost', 7060, 'aliehsanmilad', 'Key1_s!3cr3t'),
+    ('IFN', 'core01-oifm', 7076, 'aliehsanmilad', 'Key1_s!3cr3t'),
+]
+UPDATE_CYCLE = 5        # to minutes
+QUERY_HOME_PAGE = {
+    'sort': -1,
+    'international': False
+}
+QUERY_FLIGHT_INFO = {
+    'sort': -1,
+    'limit': 500,
+    'international': False
+}
+########################################################################
+
+# Debug mode ###########################################################
+DEBUG = True
+########################################################################
+
+# DB Configuration######################################################
+EXIST_DB = False
+# MONGO_HOST_SELF = 'localhost'
+# MONGO_PORT_SELF = 27017
+########################################################################
+
+# Threading ############################################################
+background_process_thread_pool = 150
+main_min_thread = 50
+main_max_thread = 150
+########################################################################
+
+# Logging ##############################################################
+log_dir = '/var/log/core/{0}/'.format(CORE_ID)
+path_error = '/var/log/core/{0}/error.log'.format(CORE_ID)
+path_object = '/var/log/core/{0}/object.log'.format(CORE_ID)
+path_service = '/var/log/core/{0}/service.log'.format(CORE_ID)
+path_db = '/var/log/core/{0}/db.log'.format(CORE_ID)
+path_debug = '/var/log/core/{0}/debug.log'.format(CORE_ID)
+path_jobs = '/var/log/core/{0}/jobs.log'.format(CORE_ID)
+path_request = '/var/log/core/{0}/request.log'.format(CORE_ID)
+path_apscheduler = '/var/log/core/{0}/apscheduler.log'.format(CORE_ID)
+max_bytes = 1000000
+backup_count = 10
+########################################################################
