@@ -1,24 +1,16 @@
 # Core Settings ########################################################
-CORE_NAME = 'CACHE SERVER'
-CORE_ID = 'cache'
+CORE_NAME = 'Your Name'
+CORE_ID = 'Your Name'
 CORE_PORT = 7095
 ########################################################################
 
 # Main settings ########################################################
-AIRPORTS = [
-    ('THR', 'localhost', 7060, 'aliehsanmilad', 'Key1_s!3cr3t'),
-    ('IFN', 'core01-oifm', 7076, 'aliehsanmilad', 'Key1_s!3cr3t'),
-]
-UPDATE_CYCLE = 5        # to minutes
-QUERY_HOME_PAGE = {
-    'sort': -1,
-    'international': False
-}
-QUERY_FLIGHT_INFO = {
-    'sort': -1,
-    'limit': 500,
-    'international': False
-}
+########################################################################
+
+# Debug mode ###########################################################
+AFTER_DONE = True
+BEFORE_DONE = True
+DEBUG_RESULT = True
 ########################################################################
 
 # Debug mode ###########################################################

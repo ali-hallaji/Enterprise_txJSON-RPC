@@ -9,12 +9,10 @@ from core import toLog
 from config.settings import CORE_PORT
 from config.settings import CORE_ID
 from config.settings import DEBUG
-from config.settings import BASE_DIR
 from config.settings import background_process_thread_pool as pool
 from config.settings import CREDENTIALS
 from services.rpc_core.main_json_rpc import CoreServices
 from services.rpc_core.auth import BasicCredChecker
-
 
 
 def runRPC():
@@ -27,7 +25,6 @@ def run_reactor():
     main = CoreServices()
     observer = log.PythonLoggingObserver()
     observer.start()
-    realm_name = "Server Name: {}".format(CORE_ID)
 
     if CREDENTIALS:
         checker = BasicCredChecker(CREDENTIALS)

@@ -1,8 +1,9 @@
 # python import
-import datetime
-import hashlib
 import re
+import uuid
 import time
+import base64
+import hashlib
 
 from bson.regex import Regex
 from random import random
@@ -10,11 +11,10 @@ from random import random
 from cerberus import Validator
 from cerberus import errors
 
-
 # Core Services import
 
 
-def getToken(dict):
+def get_token(dict):
     unique_str = ''.join(["'%s':'%s';" % (key, val) for
                           (key, val) in sorted(dict.items())])
     token = hashlib.sha1(unique_str).hexdigest()
@@ -22,24 +22,11 @@ def getToken(dict):
     return token
 
 
-def setUniqueId():
-    one_part = time.time()
-    two_part = random.randint(1000, 10000000000)
-    unique_id = one_part + two_part
-    return unique_id
-
-
-def uniqueCode(seed):
+def unique_code(seed):
     one_part = time.time()
     two_part = random.randint(10000000, 999999999)
     unique_id = str(int(one_part + two_part))
     return unique_id[:seed]
-
-
-def convertFromEpochToStamp(_time):
-    stamp = datetime.datetime.fromtimestamp(
-        _time).strftime('%Y-%m-%d %H:%M:%S')
-    return stamp
 
 
 class MongoValidator(Validator):
@@ -67,7 +54,7 @@ class MongoValidator(Validator):
             self._error(field, errors.ERROR_BAD_TYPE % 'BsonRegex')
 
 
-def discount_all_product(price):
-    discount = price['sell'] - price['buy']
-    discount *= 0.02
-    return price['sell'] - discount
+# get a UUID - URL safe, Base64
+def get_uuid():
+    r_uuid = base64.urlsafe_b64encode(uuid.uuid4().bytes)
+    return r_uuid.replace('=', '')
