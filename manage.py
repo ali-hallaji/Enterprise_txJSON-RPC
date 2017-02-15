@@ -3,12 +3,11 @@
 import sys
 import random
 from json import dumps
-from config.settings import BASE_DIR
+from config.settings import CREDENTIALS
 
 
-def get_token():
-    tokens = [p.rstrip('\n') for p in open(BASE_DIR + '/config/passwd.db')]
-    return random.choice(tokens)
+cred = random.choice(CREDENTIALS)
+get_token = cred[0] + ':' + cred[1]
 
 
 usage = """
@@ -25,7 +24,7 @@ Options:\n\n[General options]:\n\n\n
                             see settings file.)
 
  shutdown                   Shutdown your server
-
+[0
  start_component            Create your component. send your
                             component name as second argument.
                             e.g: python manage.py start_component test
@@ -51,6 +50,7 @@ def main():
         if sys.argv[1] == 'runserver':
             from runner import initRPC
 
+            
             # Start server from here
             initRPC()
 
@@ -67,7 +67,7 @@ def main():
 
             try:
                 conn = Server(
-                    'http://{0}@localhost:{1}'.format(get_token(), CORE_PORT)
+                    'http://{0}@localhost:{1}'.format(get_token, CORE_PORT)
                 )
                 conn.main.stop()
 
@@ -88,7 +88,7 @@ def main():
             try:
                 key = sys.argv[2]
                 conn = Server(
-                    'http://{0}@localhost:{1}'.format(get_token(), CORE_PORT)
+                    'http://{0}@localhost:{1}'.format(get_token, CORE_PORT)
                 )
                 data = conn.main.access_shared_memory(key)
                 pretty(data)
@@ -112,7 +112,7 @@ def main():
 
             try:
                 conn = Server(
-                    'http://{0}@localhost:{1}'.format(get_token(), CORE_PORT)
+                    'http://{0}@localhost:{1}'.format(get_token, CORE_PORT)
                 )
                 data = conn.listMethods()
                 pretty(dumps(data))
@@ -131,7 +131,7 @@ def main():
                 try:
                     conn = Server(
                         'http://{0}@localhost:{1}'.format(
-                            get_token(),
+                            get_token,
                             CORE_PORT
                         )
                     )
