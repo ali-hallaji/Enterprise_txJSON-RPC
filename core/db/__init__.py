@@ -1,22 +1,11 @@
 from config.settings import EXIST_DB
-from mongo_drivers import MongoConnectionGlobal
-from mongo_drivers import MongoConnectionLocal
-from mongo_drivers import MongoConnectionSelf
+from config.settings import DB_NAME
+from mongo_drivers import MongoConnection
 
 
-def MongoCursorDefsLocal(db):
-    return MongoConnectionLocal().getCursor(db)
-
-
-def MongoCursorDefsSelf(db):
-    return MongoConnectionSelf().getCursor(db)
-
-
-def MongoCursorDefsGlobal(db):
-    return MongoConnectionGlobal().getCursor(db)
+def MongoCursor(db):
+    return MongoConnection().getCursor(db)
 
 
 if EXIST_DB:
-    cursor_local = MongoCursorDefsLocal('FIDS')
-    cursor_global = MongoCursorDefsGlobal('FIDS')
-    cursor_self = MongoCursorDefsSelf('FIDS')
+    cursor = MongoCursor(DB_NAME)
