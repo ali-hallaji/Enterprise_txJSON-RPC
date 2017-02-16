@@ -4,12 +4,16 @@ from pymongo import MongoClient
 from pymongo import ReadPreference
 
 from config import settings
+from config.settings import EXIST_DB
+from config.settings import DB_NAME
 from core.patterns.class_singleton import Singleton
 
 
 @Singleton
 class MongoConnection(object):
     __db = None
+    db_name = DB_NAME
+    exist = EXIST_DB
 
     @classmethod
     def get_connection(cls):
