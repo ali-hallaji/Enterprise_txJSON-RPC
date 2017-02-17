@@ -15,8 +15,5 @@ def start_component(name):
         # Second step
         execute_assign(name)
 
-        # Third step
-        added_component(name)
-
     except Exception as e:
         print e
